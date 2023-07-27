@@ -24,7 +24,7 @@ In the docker Desktop App, <br />
 (1) Click on the "Search" bar and type "helenatodd/dimalis_fluo"
 
 <p align="center">
-  <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis/blob/main/readme_images/step21.png">
+  <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis_fluo/blob/main/readme_images/step21.png">
 </p>
 
 (1) Then click on "Images" and <br />
@@ -33,7 +33,7 @@ In the docker Desktop App, <br />
 (4) Finally, click on the "Run" button to download Dimalis_fluo and launch the interface that will allow you to launch Dimalis_fluo on your raw images.
 
 <p align="center">
-  <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis/blob/main/readme_images/step22.png">
+  <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis_fluo/blob/main/readme_images/step22.png">
 </p>
 
 ### Step 3: Run Dimalis_fluo on your images
