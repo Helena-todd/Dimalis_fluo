@@ -1,14 +1,14 @@
-# Dimalis: a new way of analysing your timelapse images fast and efficiently
+# Dimalis_fluo: a new way of analysing your timelapse images fast and efficiently
 
 <p align="center">
   <img width="500" height="300" src="https://github.com/Helena-todd/Dimalis/blob/main/dimalis_pipeline.png">
 </p>
 
-Dimalis is wrapped in a docker structure, which facilitates its installation on any operating system and allows to perform image denoising, single cell segmentation and cell tracking by running one line of code only!
+Dimalis_fluo is wrapped in a docker structure, which facilitates its installation on any operating system and allows to perform image denoising, single cell segmentation and cell tracking by running one line of code only!
 
-*Note: On this github page, we provided a few images from a timelapse that you can use as test images for Dimalis. In order to find them, scroll up to the top of this page and click on the green "Code" button and on "Download zip". The zipped folder that you will download contains a /test_images subfolder, containing raw phase contrast images.*
+*Note: On this github page, we provided a few images from a timelapse that you can use as test images for Dimalis_fluo. In order to find them, scroll up to the top of this page and click on the green "Code" button and on "Download zip". The zipped folder that you will download contains a /test_images subfolder, containing raw phase contrast and corresponding fluorescence channel images.*
 
-## Here's a user-friendly step-by-step protocol to analyse cells in your images using Dimalis:
+## Here's a user-friendly step-by-step protocol to analyse cells in your images using Dimalis_fluo:
 
 ### Step 1: Install the Docker Desktop App
 
@@ -18,10 +18,10 @@ Once you have completed the installation, you can launch the Docker Desktop App
 
 *Note: if you encounter issues with Docker Desktop on Windows, consider uninstalling it, restarting your computer, and re-installing Docker Desktop with admin rights, as explained on the docker forum (https://forums.docker.com/t/solved-docker-failed-to-start-docker-desktop-for-windows/106976).![image](https://user-images.githubusercontent.com/17719754/218061342-e727dca7-0ca3-4000-ab8a-615f1b2f1df7.png)*
 
-### Step 2: Search for the helenatodd/dimalis image from the Docker Desktop App
+### Step 2: Search for the helenatodd/dimalis_fluo image from the Docker Desktop App
 
 In the docker Desktop App, <br />
-(1) Click on the "Search" bar and type "helenatodd/dimalis"
+(1) Click on the "Search" bar and type "helenatodd/dimalis_fluo"
 
 <p align="center">
   <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis/blob/main/readme_images/step21.png">
@@ -29,22 +29,25 @@ In the docker Desktop App, <br />
 
 (1) Then click on "Images" and <br />
 (2) click on "Hub images" and <br />
-(3) select the "helenatodd/dimalis:v1.2" docker image by clicking on it. <br />
-(4) Finally, click on the "Run" button to download Dimalis and launch the interface that will allow you to launch Dimalis on your raw images.
+(3) select the "helenatodd/dimalis_fluo:v1.1" docker image by clicking on it. <br />
+(4) Finally, click on the "Run" button to download Dimalis_fluo and launch the interface that will allow you to launch Dimalis_fluo on your raw images.
 
 <p align="center">
   <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis/blob/main/readme_images/step22.png">
 </p>
 
-### Step 3: Run Dimalis on your images
+### Step 3: Run Dimalis_fluo on your images
 
-First, click on the arrow next to "Optional settings" to access the settings of Dimalis (1):
+*Note: The images need to respect a certain format so that Dimalis_fluo can read them: the phase contrast or bright field images should be located in an /exported subfolder, and the corresponding fluorescent images should be located in a /fluo_channels sub_folder with one sub-subfolder per fluorescent marker. We provided test data on this github page as an example of how the data should be formatted.*
+
+
+First, click on the arrow next to "Optional settings" to access the settings of Dimalis_fluo (1):
 
 <p align="center">
   <img width="800" height="450" src="https://github.com/Helena-todd/Dimalis/blob/main/readme_images/step31.png">
 </p>
 
-You can now define the Dimalis parameters: <br />
+You can now define the Dimalis_fluo parameters: <br />
 (1) The first box can stay empty, it allows you to give a name to the container that will be launched, but docker will give it a default name if you don't. <br />
 (2) By clicking on those three dots, you will be able to browse, on your computer, into the folder containing the raw images on which you wish to apply Dimalis (or into the /test_images folder that we provided) <br />
 (3) Type "/home/test_images/" in this box <br />
@@ -71,12 +74,13 @@ You can then provide information on the remaining Dimalis parameters: <br />
   <img width="800" height="500" src="https://github.com/Helena-todd/Dimalis/blob/main/readme_images/step33.png">
 </p>
 
-### Dimalis results
+### Dimalis_fluo results
 
-After running Dimalis on your raw images, new subfolders will be generated in the folder where your images are located, that contains the cell denoising, cell segmentation, cell features and cell tracking results. <br />
+After running Dimalis_fluo on your raw images, new subfolders will be generated in the folder where your images are located, that contains the cell denoising, cell segmentation, cell features and cell tracking results. <br />
 - the BM3D subfolder contains the denoised images (or, if you skipped denoising, the raw images copied from your original folder) <br />
 - the Omnipose subfolder contains the cell masks identified during the cell segmentation step, in TIF format. <br />
 - the feature_tables subfolder contains one CSV file per timepoint, in which the cells are represented in rows and their respective features (such as area in pixels, x and y coordinates, ...) are represented in columns. <br />
+- the fluo_channels subfolder now contains one extra subfolder per fluorescent channel, that each contains one CSV table per timepoint, with the fluorescent measurements for each cell <br />
 - the STrack subfolder contains the tracking results. For each image - 1 (the cells in the 1st image cannot be tracked by definition), STrack returns: 1) a CSV table, that contains the links from cells in the previous to cells in the current image. 2) a PNG image, in which these links are represented as red lines <br />
 
 Dimalis will also return two additional excel formatted files:
